@@ -1,0 +1,16 @@
+{
+  "name": "split-check-app",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "description": "Group bill splitting calculator with tax & discount support",
+  "main": "server.js",
+  "packages": {},
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
