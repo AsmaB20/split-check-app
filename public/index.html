@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SplitCheck — Split Bills Without the Drama</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">🧾 SplitCheck</div>
+  <h1>Split Without the Drama</h1>
+  <p>Add everyone's orders, set taxes &amp; discounts, get exact amounts.</p>
+</header>
+
+<!-- ① PEOPLE & ITEMS -->
+<div class="card">
+  <div class="card-header">
+    <h2><span class="num">1</span> People &amp; Their Orders</h2>
+    <div style="display:flex;gap:.5rem;align-items:center;">
+      <label style="font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);">Currency</label>
+      <select class="currency-select" id="currency-select" onchange="save()">
+        <option value="$">$ USD</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+        <option value="¥">¥ JPY</option>
+        <option value="﷼">﷼ QAR</option>
+        <option value="د.إ">د.إ AED</option>
+        <option value="₹">₹ INR</option>
+        <option value="₩">₩ KRW</option>
+        <option value="₺">₺ TRY</option>
+        <option value="R$">R$ BRL</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-body">
+    <div id="people-list"></div>
+    <button class="btn-add-person" onclick="addPerson()">＋ Add Person</button>
+  </div>
+</div>
+
+<!-- ② ADJUSTMENTS -->
+<div class="card">
+  <div class="card-header">
+    <h2><span class="num">2</span> Taxes, Fees &amp; Discounts</h2>
+  </div>
+  <div class="card-body">
+    <div id="adj-list" style="display:flex;flex-direction:column;gap:.75rem;"></div>
+    <div class="adj-actions">
+      <button class="btn-add-adj" onclick="addAdj('tax')">＋ Add Tax / Fee</button>
+      <button class="btn-add-adj" onclick="addAdj('discount')">＋ Add Discount</button>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="total-check-row">
+      <div class="field">
+        <label>Bill Total (optional — for verification)</label>
+        <input type="number" id="bill-total" placeholder="Enter amount from your actual bill" step="0.01" min="0" oninput="save()" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ CALCULATE -->
+<div class="card" style="max-width:780px;margin:0 auto 1.5rem;">
+  <div class="card-body" style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;">Ready to calculate?</div>
+      <div style="font-size:.82rem;color:var(--ink-mid);margin-top:.2rem;">Results update live as you type.</div>
+    </div>
+    <div class="action-bar" style="margin:0;">
+      <button class="btn-primary" onclick="calculate()">Calculate Split ✦</button>
+      <button class="btn-secondary" onclick="resetAll()">⟳ Reset All</button>
+    </div>
+  </div>
+</div>
+
+<!-- ④ RESULTS -->
+<div class="card" id="results-section">
+  <div class="card-header">
+    <h2><span class="num">3</span> Results</h2>
+    <button class="btn-secondary" onclick="copyResults()" style="font-size:.78rem;padding:.4rem .85rem;">Copy Summary</button>
+  </div>
+  <div class="card-body">
+    <div class="results-summary" id="results-summary"></div>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th style="text-align:right;">Amount to Pay</th>
+        </tr>
+      </thead>
+      <tbody id="results-body"></tbody>
+    </table>
+    <div id="bill-match-row"></div>
+  </div>
+</div>
+
+<footer>Made with ☕ · No login · No data sent anywhere · All local</footer>
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
