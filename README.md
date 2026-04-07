@@ -1,5 +1,7 @@
 # 🧾 SplitCheck
 
+Link: [https://split-check-lyart.vercel.app/](https://split-check-lyart.vercel.app/)
+
 > Split restaurant bills without the drama. Handles taxes, fees, and discounts — shows everyone exactly what they owe.
 
 **No login. No database. No server-side data. Everything lives in the browser.**
